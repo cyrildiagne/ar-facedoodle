@@ -17,6 +17,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  font-family: 'Poppins', 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }
 
 body.loading::before {
@@ -47,7 +48,40 @@ body.loading::before {
   opacity: 0;
 }
 
+.info {
+  display: none;
+  border-radius: 10px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 8;
+}
+
+.info.show {
+  display: flex;
+}
+
+.info-content {
+  background: white;
+  padding: 1em;
+}
+
+#bt-info {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  background: white;
+  border-radius: 5em;
+  z-index: 9;
+  box-shadow: 0 0px 1px rgba(0, 0, 0, 0.1), 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+/** Canvas **/
+
 .three-canvas {
+  transform: scale(-1, 1);
   border-radius: 2em;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
 }
@@ -56,15 +90,17 @@ body.loading::before {
   opacity: 0.5;
 }
 
+/** UI **/
+
 .ui {
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 9em;
-  padding: 0.5em 1em;
+  padding: 0.25em 0.5em;
   box-shadow: 0 0px 1px rgba(0, 0, 0, 0.1), 0 2px 15px rgba(0, 0, 0, 0.05);
   background: white;
-  margin-top: 1em;
+  margin-top: 1.25em;
 }
 
 /** Color picker **/
@@ -130,16 +166,15 @@ body.loading::before {
   opacity: 0.1;
 }
 
-/** DEBUG **/
-
-#debug {
-  color: lightgrey;
-}
-
-
 /** MOBILE **/
 
 @media only screen and (max-width: 600px) {
+  
+  .three-canvas {
+    width: inherit;
+    height: 100vh;
+  }
+  
   .ui {
     position: absolute;
     bottom: 1em;

@@ -54,7 +54,7 @@ function onMouseDown(evt) {
 
 function onMouseMove(evt) {
   const rect = threeEl.getBoundingClientRect()
-  const x = evt.clientX - rect.x
+  const x = rect.width - (evt.clientX - rect.x)
   const y = evt.clientY - rect.y
   three.draw({ x, y })
 }
@@ -70,7 +70,7 @@ function onTouchStart(evt) {
 
 function onTouchMove(evt) {
   const rect = threeEl.getBoundingClientRect()
-  const x = evt.touches[0].clientX - rect.x
+  const x = rect.width - (evt.touches[0].clientX - rect.x)
   const y = evt.touches[0].clientY - rect.y
   three.draw({ x, y })
 }
@@ -146,6 +146,15 @@ async function init() {
   // Debug button.
   const debugEl = document.getElementById('debug')
   debugEl.addEventListener('click', () => three.setDebug(!three.params.debug))
+  // Info bt.
+  const infoBt = document.getElementById('bt-info')
+  const infoEl = document.getElementById('info')
+  infoBt.addEventListener('click', () => {
+    infoEl.classList.toggle('show')
+  })
+  infoEl.addEventListener('click', () => {
+    infoEl.classList.remove('show')
+  })
 
   // Done.
   document.body.classList.remove('loading')

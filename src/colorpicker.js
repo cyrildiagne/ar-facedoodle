@@ -4,7 +4,11 @@ function init(callback) {
   const bt = document.getElementById('bt-picker')
   bt.addEventListener('click', btClicked)
   colorpicker.from('.picker').on('change', (picker, color) => {
-    bt.style.backgroundColor = color
+    if (color === 'rgb(255, 255, 255)') {
+      bt.style.color = 'black'
+    } else {
+      bt.style.color = color
+    }
     callback(color)
   })
 }

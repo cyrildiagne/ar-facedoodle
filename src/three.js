@@ -185,10 +185,8 @@ function draw(pt) {
             y: (pts[i].y + pts[i + 1].y) / 2
           }
           ctx.quadraticCurveTo(pts[i].x, pts[i].y, c.x, c.y)
-          // ctx.lineTo(pts[i].x, pts[i].y)
         }
         ctx.quadraticCurveTo(pts[i].x, pts[i].y, pts[i + 1].x, pts[i + 1].y)
-        // ctx.lineTo(pts[i].x, pts[i].y)
         ctx.stroke()
       }
       currPlane.mesh.material.map.needsUpdate = true
