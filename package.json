@@ -5,6 +5,7 @@
   "repository": "https://github.com/cyrildiagne/doodleface",
   "scripts": {
     "start": "parcel index.html --no-cache",
+    "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "twitter.com/cyrildiagne",
@@ -34,6 +35,7 @@
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "gh-pages": "^2.2.0",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-clean-dist": "0.0.6",
     "prettier": "^2.0.5",
