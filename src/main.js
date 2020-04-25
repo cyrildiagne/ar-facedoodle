@@ -11,12 +11,6 @@ let video
 let paused = false
 let threeEl
 
-function isMobile() {
-  const isAndroid = /Android/i.test(navigator.userAgent)
-  const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
-  return isAndroid || isiOS
-}
-
 async function setupCamera() {
   video = document.createElement('video')
 
@@ -24,8 +18,8 @@ async function setupCamera() {
     audio: false,
     video: {
       facingMode: 'user',
-      width: isMobile() ? null : 640,
-      height: isMobile() ? null : 640
+      width: 640,
+      height: 640
     }
   })
   video.srcObject = stream
@@ -123,6 +117,7 @@ async function init() {
   window.addEventListener('mouseup', onMouseUp)
   threeEl.addEventListener('touchstart', onTouchStart)
   window.addEventListener('touchend', onTouchEnd)
+  window.addEventListener('dblclick', () => three.setDebug(!three.params.debug))
   document.querySelector('.container').prepend(threeEl)
 
   // Launch update loop.
@@ -131,7 +126,9 @@ async function init() {
   window.addEventListener('focus', play)
 
   // Setup UI.
+  // Color picker
   colorpicker.init(color => (three.params.color = color))
+  // Slider.
   const slider = new MDCSlider(document.querySelector('.mdc-slider'))
   const thumb = document.querySelector('.mdc-slider__thumb')
   thumb.style.transform = 'scale(1)'
@@ -143,8 +140,12 @@ async function init() {
     pin.style.bottom = `${10 + slider.value}px`
     three.params.thickness = thickness
   })
+  // Clear button.
   const clearEl = document.getElementById('clear')
   clearEl.addEventListener('click', clear)
+  // Debug button.
+  const debugEl = document.getElementById('debug')
+  debugEl.addEventListener('click', () => three.setDebug(!three.params.debug))
 
   // Done.
   document.body.classList.remove('loading')
