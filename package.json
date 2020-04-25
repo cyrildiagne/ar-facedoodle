@@ -5,7 +5,7 @@
   "repository": "https://github.com/cyrildiagne/doodleface",
   "scripts": {
     "start": "parcel index.html --no-cache",
-    "deploy": "parcel build index.html --no-cache && gh-pages -d dist",
+    "deploy": "parcel build index.html --no-source-maps --no-cache --public-url /ar-mask-draw/ && gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "twitter.com/cyrildiagne",
