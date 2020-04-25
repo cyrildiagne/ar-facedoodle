@@ -63,9 +63,14 @@ function alignPlane(plane) {
   centroid.add(vertices[plane.face.b])
   centroid.add(vertices[plane.face.c])
   centroid.divideScalar(3)
-  plane.mesh.position.copy(
-    centroid.clone().add(plane.face.normal.multiplyScalar(-10))
-  )
+  const centroidWithOffset = centroid
+    .clone()
+    .add(plane.face.normal.multiplyScalar(-10))
+  plane.mesh.position.copy(centroidWithOffset)
+  if (params.debug) {
+    plane.debug.position.copy(plane.mesh.position)
+    plane.debug.rotation.copy(plane.mesh.rotation)
+  }
 }
 
 function update(facemesh) {
@@ -156,11 +161,6 @@ function draw(pt) {
       const ctx = currPlane.ctx
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 
-      // if (params.debug) {
-      //   ctx.fillStyle = 'rgba(255, 255, 255, 0.1)'
-      //   ctx.fillRect(0, 0, planeWidth, planeHeight)
-      // }
-
       // for (let i = 0; i < pts.length - 2; i++) {
       //   ctx.beginPath()
       //   ctx.moveTo(pts[i].x, pts[i].y)
@@ -221,6 +221,7 @@ function clear() {
   end()
   for (const plane of planes) {
     scene.remove(plane.mesh)
+    scene.remove(plane.debug)
   }
   planes.splice(0, planes.length)
 }
@@ -230,9 +231,15 @@ function setDebug(value) {
   if (params.debug) {
     baseMesh.material.transparent = false
     baseMesh.material.opacity = 1
+    for (const plane of planes) {
+      scene.add(plane.debug)
+    }
   } else {
     baseMesh.material.transparent = true
     baseMesh.material.opacity = 0
+    for (const plane of planes) {
+      scene.remove(plane.debug)
+    }
   }
 }
 
@@ -259,13 +266,36 @@ function createDrawingPlane(position, face, uv) {
     depthWrite: false
   })
   const mesh = new THREE.Mesh(geom, mat)
+
+  // Create an object that will contain some debug helpers.
+  const debugObj = new THREE.Object3D()
+
   const plane = {
     mesh,
     face,
     ctx,
-    points: []
+    points: [],
+    debug: debugObj
   }
   alignPlane(plane)
+
+  // Add Debug Helper.
+  const helper = new THREE.AxesHelper(50)
+  debugObj.add(helper)
+  // Add Debug Grid.
+  const pgeom = new THREE.PlaneGeometry(30, 30, 3, 3)
+  const pmat = new THREE.MeshBasicMaterial({
+    color: '#ffffff',
+    wireframe: true
+  })
+  const debugPlane = new THREE.Mesh(pgeom, pmat)
+  debugObj.add(debugPlane)
+
+  if (params.debug) {
+    debugObj.lookAt(face.normal)
+    debugObj.position.copy(plane.mesh.position)
+    scene.add(debugObj)
+  }
 
   return plane
 }

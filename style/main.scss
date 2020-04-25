@@ -20,7 +20,7 @@ body {
 }
 
 body.loading::before {
-  content: " ";
+  content: ' ';
   display: block;
   width: 100%;
   height: 100%;
@@ -49,7 +49,7 @@ body.loading::before {
 
 .three-canvas {
   border-radius: 2em;
-  box-shadow: 0 2px 15px rgba(0,0,0,.15);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
 }
 
 .paused .three-canvas {
@@ -60,11 +60,9 @@ body.loading::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background: #eaeaea; */
   border-radius: 9em;
-  // border: 1px solid #c7c7c7;
   padding: 0.5em 1em;
-  box-shadow: 0 0px 1px rgba(0,0,0,.1), 0 2px 15px rgba(0,0,0,.05);
+  box-shadow: 0 0px 1px rgba(0, 0, 0, 0.1), 0 2px 15px rgba(0, 0, 0, 0.05);
   background: white;
   margin-top: 1em;
 }
@@ -74,7 +72,7 @@ body.loading::before {
 .picker .a-color-picker {
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 2px 15px rgba(0,0,0,.15);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
 }
 
 .color {
@@ -100,7 +98,6 @@ body.loading::before {
 }
 
 #bt-picker {
-  // background: red;
   border-radius: 1em;
 }
 
@@ -132,6 +129,13 @@ body.loading::before {
 .mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-container::after {
   opacity: 0.1;
 }
+
+/** DEBUG **/
+
+#debug {
+  color: lightgrey;
+}
+
 
 /** MOBILE **/
 
