@@ -1,0 +1,63 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="style/main.scss" />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined"
+    rel="stylesheet"
+  />
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+</head>
+<body class="loading">
+  <div class="container">
+    <div class="ui">
+      <!-- <input id="color" type="color" value="#ffffff" /> -->
+      <!-- <input id="thickness" type="range" min="1" max="50" step="1" value="20" /> -->
+      <div class="color">
+        <button id="bt-picker" class="mdc-icon-button material-icons-outlined">
+          color_lens
+        </button>
+        <div class="colorpicker">
+          <div
+            class="picker"
+            acp-color="#FFFFFF"
+            acp-show-rgb="no"
+            acp-show-hsl="no"
+            acp-show-hex="no"
+            acp-palette="PALETTE_MATERIAL_CHROME"
+            acp-palette-editable
+          ></div>
+        </div>
+      </div>
+
+      <div class="slider">
+        <div
+          class="mdc-slider mdc-slider--discrete mdc-slider--display-markers"
+          role="slider"
+          aria-valuemin="0"
+          aria-valuemax="50"
+          aria-valuenow="20"
+          data-step="1"
+          aria-label="Thickness"
+        >
+          <div class="mdc-slider__track-container">
+            <div class="mdc-slider__track"></div>
+            <div class="mdc-slider__track-marker-container"></div>
+          </div>
+          <div class="mdc-slider__thumb-container">
+            <div class="mdc-slider__pin">
+              <span class="mdc-slider__pin-value-marker"></span>
+            </div>
+            <svg class="mdc-slider__thumb" width="21" height="21">
+              <circle cx="10.5" cy="10.5" r="7.875"></circle>
+            </svg>
+            <div class="mdc-slider__focus-ring"></div>
+          </div>
+        </div>
+      </div>
+
+      <button id="clear" class="mdc-icon-button material-icons-outlined">
+        delete
+      </button>
+    </div>
+  </div>
+</body>
+<script src="src/main.js"></script>
