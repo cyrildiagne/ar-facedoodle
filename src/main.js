@@ -11,6 +11,12 @@ let video
 let paused = false
 let threeEl
 
+function isMobile() {
+  const isAndroid = /Android/i.test(navigator.userAgent)
+  const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+  return isAndroid || isiOS
+}
+
 async function setupCamera() {
   video = document.createElement('video')
 
@@ -18,8 +24,8 @@ async function setupCamera() {
     audio: false,
     video: {
       facingMode: 'user',
-      width: 640,
-      height: 640
+      width: isMobile() ? null : 640,
+      height: isMobile() ? null : 640
     }
   })
   video.srcObject = stream
@@ -49,10 +55,6 @@ async function update() {
 }
 
 function onMouseDown(evt) {
-  // const rect = threeEl.getBoundingClientRect()
-  // const x = evt.clientX - rect.x
-  // const y = evt.clientY - rect.y
-  // three.draw({ x, y })
   window.addEventListener('mousemove', onMouseMove)
 }
 
@@ -66,6 +68,22 @@ function onMouseMove(evt) {
 function onMouseUp(evt) {
   three.end()
   window.removeEventListener('mousemove', onMouseMove)
+}
+
+function onTouchStart(evt) {
+  window.addEventListener('touchmove', onTouchMove)
+}
+
+function onTouchMove(evt) {
+  const rect = threeEl.getBoundingClientRect()
+  const x = evt.touches[0].clientX - rect.x
+  const y = evt.touches[0].clientY - rect.y
+  three.draw({ x, y })
+}
+
+function onTouchEnd(evt) {
+  three.end()
+  window.removeEventListener('touchmove', onTouchMove)
 }
 
 function play() {
@@ -103,6 +121,8 @@ async function init() {
   threeEl.classList.add('three-canvas')
   threeEl.addEventListener('mousedown', onMouseDown)
   window.addEventListener('mouseup', onMouseUp)
+  threeEl.addEventListener('touchstart', onTouchStart)
+  window.addEventListener('touchend', onTouchEnd)
   document.querySelector('.container').prepend(threeEl)
 
   // Launch update loop.
