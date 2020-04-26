@@ -29,7 +29,7 @@ body.loading::before {
   background: url(../assets/spinner.svg) no-repeat center center;
 }
 
-.mdc-icon-button.material-icons-outlined {
+.ui .mdc-icon-button.material-icons-outlined {
   @include icon-button.icon-size(28, 28, 14px);
 }
 
@@ -72,23 +72,33 @@ body.loading::before {
   padding-bottom: 3em;
   color: white;
   font-size: 28px;
-  padding: 2em;
+  padding: 0.5em 1.5em;
 
   h1 {
     margin: 0;
+    line-height: 72px;
   }
   a {
     color: white;
   }
 }
 
-#bt-info {
+.alt-bts {
   position: absolute;
   top: 0.5em;
   right: 0.5em;
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  
+  > * {
+    margin: 0.5em;
+  }
+}
+
+#bt-info {
   background: white;
   border-radius: 5em;
-  z-index: 9;
   box-shadow: 0 0px 1px rgba(0, 0, 0, 0.1), 0 2px 15px rgba(0, 0, 0, 0.05);
 }
 

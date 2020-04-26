@@ -215,6 +215,15 @@ function end() {
   currPlane = null
 }
 
+function undo() {
+  end()
+  if (planes.length) {
+    const plane = planes.pop()
+    scene.remove(plane.mesh)
+    scene.remove(plane.debug)
+  }
+}
+
 function clear() {
   end()
   for (const plane of planes) {
@@ -303,6 +312,7 @@ export default {
   update,
   draw,
   end,
+  undo,
   clear,
   params,
   setDebug

@@ -91,10 +91,6 @@ function pause() {
   document.body.classList.add('paused')
 }
 
-function clear() {
-  three.clear()
-}
-
 async function init() {
   if (useCamera) {
     // Initialize camera.
@@ -139,9 +135,12 @@ async function init() {
     pin.style.bottom = `${10 + slider.value}px`
     three.params.thickness = thickness
   })
+  // Undo button.
+  const undoEl = document.getElementById('undo')
+  undoEl.addEventListener('click', () => three.undo())
   // Clear button.
   const clearEl = document.getElementById('clear')
-  clearEl.addEventListener('click', clear)
+  clearEl.addEventListener('click', () => three.clear())
   // Debug button.
   const debugEl = document.getElementById('debug')
   debugEl.addEventListener('click', () => three.setDebug(!three.params.debug))
