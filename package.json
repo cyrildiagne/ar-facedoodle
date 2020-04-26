@@ -37,10 +37,7 @@
     ],
     "plugins": [
       [
-        "transform-runtime",
-        {
-          "polyfill": false
-        }
+        "@babel/plugin-transform-runtime"
       ]
     ]
   },
@@ -51,14 +48,14 @@
     "@tensorflow/tfjs-converter": "^1.7.3",
     "@tensorflow/tfjs-core": "^1.7.3",
     "a-color-picker": "^1.2.1",
-    "babel-core": "^6.26.3",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-polyfill": "^6.26.0",
-    "parcel-plugin-static-files-copy": "^2.3.1",
     "simplify-js": "^1.2.4",
     "three": "^0.115.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/runtime": "^7.9.2",
     "babel-preset-env": "^1.7.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.11.0",
@@ -73,6 +70,7 @@
     "node-sass-package-importer": "^5.3.2",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-clean-dist": "0.0.6",
+    "parcel-plugin-static-files-copy": "^2.3.1",
     "prettier": "^2.0.5",
     "prettier-config-standard": "^1.0.1",
     "sass": "^1.26.5"
