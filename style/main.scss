@@ -65,14 +65,15 @@ body.loading::before {
 }
 
 .info-content {
-  background: #000000AA;
+  background: #00000070;
   padding: 1em;
   width: 100%;
   height: 100%;
   padding-bottom: 3em;
   color: white;
   font-size: 28px;
-  padding: 0.5em 1.5em;
+  padding: 1em 1.5em;
+  max-width: 800px;
 
   h1 {
     margin: 0;
@@ -192,7 +193,7 @@ body.loading::before {
 
 /** LAPTOP **/
 
-@media only screen and (max-height: 775px) and (min-width: 600px) {
+@media only screen and (max-height: 800px) and (min-width: 600px) {
   body {
     display: flex;
     align-items: center;
