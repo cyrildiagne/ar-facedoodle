@@ -5,6 +5,8 @@ Doodle on your face with AR directly from the web browser thanks to
 [FaceMesh](https://github.com/tensorflow/tfjs-models/tree/master/facemesh)
 and [Three.js](https://threejs.org/).
 
+![debug](doc/debug.gif)
+
 Demo: [https://cyrildiagne.github.io/ar-facedoodle](https://cyrildiagne.github.io/ar-facedoodle)
 
 ## Setup
