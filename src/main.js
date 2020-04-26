@@ -117,7 +117,6 @@ async function init() {
   window.addEventListener('mouseup', onMouseUp)
   threeEl.addEventListener('touchstart', onTouchStart)
   window.addEventListener('touchend', onTouchEnd)
-  window.addEventListener('dblclick', () => three.setDebug(!three.params.debug))
   document.querySelector('.container').prepend(threeEl)
 
   // Launch update loop.

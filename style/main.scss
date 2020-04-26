@@ -26,7 +26,7 @@ body.loading::before {
   width: 100%;
   height: 100%;
   position: absolute;
-  background: url(./spinner.svg) no-repeat center center;
+  background: url(../assets/spinner.svg) no-repeat center center;
 }
 
 .mdc-icon-button.material-icons-outlined {
@@ -34,6 +34,7 @@ body.loading::before {
 }
 
 .container {
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
@@ -42,6 +43,7 @@ body.loading::before {
   flex-direction: column;
   opacity: 1;
   transition: opacity 0.5s;
+  overflow: hidden;
 }
 
 .loading .container {
@@ -50,7 +52,6 @@ body.loading::before {
 
 .info {
   display: none;
-  border-radius: 10px;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -64,10 +65,21 @@ body.loading::before {
 }
 
 .info-content {
-  background: white;
+  background: #000000AA;
   padding: 1em;
   width: 100%;
+  height: 100%;
   padding-bottom: 3em;
+  color: white;
+  font-size: 28px;
+  padding: 2em;
+
+  h1 {
+    margin: 0;
+  }
+  a {
+    color: white;
+  }
 }
 
 #bt-info {
@@ -84,8 +96,8 @@ body.loading::before {
 
 .three-canvas {
   transform: scale(-1, 1);
-  border-radius: 2em;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 2em;
 }
 
 .paused .three-canvas {
@@ -171,12 +183,11 @@ body.loading::before {
 /** MOBILE **/
 
 @media only screen and (max-width: 600px) {
-  
-  .three-canvas {
-    width: inherit;
-    height: 100vh;
-  }
-  
+  // .three-canvas {
+  //   width: inherit;
+  //   height: 100vh;
+  // }
+
   .ui {
     position: absolute;
     bottom: 1em;
@@ -184,5 +195,29 @@ body.loading::before {
 
   .picker {
     left: -20px;
+  }
+}
+
+@media only screen and (max-height: 775px) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container {
+    position: relative;
+    width: 640px;
+    height: 640px;
+    border-radius: 2em;
+  }
+
+  .three-canvas {
+    border-radius: 0;
+  }
+
+  .ui {
+    position: absolute;
+    bottom: 1em;
   }
 }
