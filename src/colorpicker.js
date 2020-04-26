@@ -9,6 +9,8 @@ function init(callback) {
     } else {
       bt.style.color = color
     }
+    const cursor = document.querySelector('.cursor')
+    cursor.style.backgroundColor = bt.style.color
     callback(color)
   })
 }

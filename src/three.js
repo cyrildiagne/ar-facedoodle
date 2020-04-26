@@ -250,6 +250,18 @@ function setDebug(value) {
   }
 }
 
+function isOverFace(pt) {
+  // Raycase draw point.
+  const x = (pt.x / renderer.domElement.clientWidth) * 2 - 1
+  const y = -(pt.y / renderer.domElement.clientHeight) * 2 + 1
+  raycaster.setFromCamera(new THREE.Vector2(x, y), camera)
+  const intersects = raycaster.intersectObject(baseMesh)
+  if (intersects.length) {
+    return true
+  }
+  return false
+}
+
 function createDrawingPlane(position, face, uv) {
   const width = planeWidth
   const height = planeHeight
@@ -315,5 +327,6 @@ export default {
   undo,
   clear,
   params,
+  isOverFace,
   setDebug
 }

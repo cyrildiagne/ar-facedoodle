@@ -8,8 +8,10 @@ import { MDCSlider } from '@material/slider/dist/mdc.slider'
 const useCamera = true
 
 let video
-let paused = false
 let threeEl
+let cursorEl
+let paused = false
+let drawing = false
 
 async function setupCamera() {
   video = document.createElement('video')
@@ -49,19 +51,33 @@ async function update() {
 }
 
 function onMouseDown(evt) {
-  window.addEventListener('mousemove', onMouseMove)
+  drawing = true
 }
 
 function onMouseMove(evt) {
   const rect = threeEl.getBoundingClientRect()
   const x = rect.width - (evt.clientX - rect.x)
   const y = evt.clientY - rect.y
-  three.draw({ x, y })
+  cursorEl.style.left = evt.clientX + 'px'
+  cursorEl.style.top = evt.clientY + 'px'
+  if (drawing) {
+    three.draw({ x, y })
+  } else {
+    const isOver = three.isOverFace({ x, y })
+    if (isOver) {
+      document.body.classList.add('hover-face')
+    } else {
+      if (document.body.classList.contains('hover-face')) {
+        document.body.classList.remove('hover-face')
+      }
+    }
+  }
 }
 
 function onMouseUp(evt) {
   three.end()
-  window.removeEventListener('mousemove', onMouseMove)
+  drawing = false
+  document.body.classList.remove('hover-face')
 }
 
 function onTouchStart(evt) {
@@ -110,6 +126,7 @@ async function init() {
   threeEl = await three.init(video)
   threeEl.classList.add('three-canvas')
   threeEl.addEventListener('mousedown', onMouseDown)
+  threeEl.addEventListener('mousemove', onMouseMove)
   window.addEventListener('mouseup', onMouseUp)
   threeEl.addEventListener('touchstart', onTouchStart)
   window.addEventListener('touchend', onTouchEnd)
@@ -131,9 +148,13 @@ async function init() {
   pin.style.bottom = '10px'
   slider.listen('MDCSlider:input', () => {
     const thickness = parseInt(slider.value)
-    thumb.style.transform = `scale(${1 + slider.value / 50})`
-    pin.style.bottom = `${10 + slider.value}px`
+    thumb.style.transform = `scale(${1 + thickness / 50})`
+    pin.style.bottom = `${10 + thickness}px`
     three.params.thickness = thickness
+    // Update cursor size.
+    const size = Math.max(2, thickness / 2)
+    cursorEl.style.width = size + 'px'
+    cursorEl.style.height = size + 'px'
   })
   // Undo button.
   const undoEl = document.getElementById('undo')
@@ -153,6 +174,11 @@ async function init() {
   infoEl.addEventListener('click', () => {
     infoEl.classList.remove('show')
   })
+
+  // Setup cursor.
+  cursorEl = document.createElement('div')
+  cursorEl.classList.add('cursor')
+  document.body.append(cursorEl)
 
   // Done.
   document.body.classList.remove('loading')

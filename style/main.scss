@@ -191,6 +191,31 @@ body.loading::before {
   opacity: 0.1;
 }
 
+/** CURSOR **/
+
+$cursorSize : 12px;
+
+.cursor {
+  display: none;
+  position: absolute;
+  z-index: 999;
+  width: $cursorSize;
+  height: $cursorSize;
+  border-radius: 75px;
+  background: white;
+  pointer-events: none;
+  opacity: 0.8;
+  transform: translate(-50%, -50%);
+}
+
+.hover-face .container {
+  cursor:none;
+}
+
+.hover-face .cursor {
+  display: block;
+}
+
 /** LAPTOP **/
 
 @media only screen and (max-height: 800px) and (min-width: 600px) {
