@@ -30,7 +30,7 @@ body.loading::before {
 }
 
 .ui .mdc-icon-button.material-icons-outlined {
-  @include icon-button.icon-size(28, 28, 14px);
+  @include icon-button.icon-size(24px, 24px, 14px);
 }
 
 .container {
@@ -121,7 +121,7 @@ body.loading::before {
   align-items: center;
   justify-content: center;
   border-radius: 9em;
-  padding: 0 .25em;
+  padding: 0 .5em;
   box-shadow: 0 0px 1px rgba(0, 0, 0, 0.1), 0 2px 15px rgba(0, 0, 0, 0.05);
   background: white;
   margin-top: 1.25em;
