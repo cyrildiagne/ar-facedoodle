@@ -111,7 +111,7 @@ body.loading::before {
   align-items: center;
   justify-content: center;
   border-radius: 9em;
-  padding: 0.25em 0.5em;
+  padding: 0 .25em;
   box-shadow: 0 0px 1px rgba(0, 0, 0, 0.1), 0 2px 15px rgba(0, 0, 0, 0.05);
   background: white;
   margin-top: 1.25em;
@@ -180,25 +180,9 @@ body.loading::before {
   opacity: 0.1;
 }
 
-/** MOBILE **/
+/** LAPTOP **/
 
-@media only screen and (max-width: 600px) {
-  // .three-canvas {
-  //   width: inherit;
-  //   height: 100vh;
-  // }
-
-  .ui {
-    position: absolute;
-    bottom: 1em;
-  }
-
-  .picker {
-    left: -20px;
-  }
-}
-
-@media only screen and (max-height: 775px) {
+@media only screen and (max-height: 775px) and (min-width: 600px) {
   body {
     display: flex;
     align-items: center;
@@ -219,5 +203,18 @@ body.loading::before {
   .ui {
     position: absolute;
     bottom: 1em;
+  }
+}
+
+/** MOBILE **/
+
+@media only screen and (max-width: 600px) {
+  .ui {
+    position: absolute;
+    bottom: 1em;
+  }
+
+  .picker {
+    left: -20px;
   }
 }
