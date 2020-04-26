@@ -1,15 +1,49 @@
 {
-  "name": "doodleface",
+  "name": "ar-facedoodle",
   "version": "1.0.0",
-  "description": "Doodle on your face using WebAR",
-  "repository": "https://github.com/cyrildiagne/doodleface",
+  "description": "Doodle on your face using AR",
+  "repository": "https://github.com/cyrildiagne/ar-facedoodle",
   "scripts": {
-    "start": "parcel index.html --host 0.0.0.0 --no-cache",
-    "deploy": "parcel build index.html --no-source-maps --no-cache --public-url /ar-mask-draw/ && gh-pages -d dist",
+    "start": "parcel index.html --host 0.0.0.0",
+    "deploy": "parcel build index.html --no-source-maps --public-url /ar-facedoodle/ && gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "twitter.com/cyrildiagne",
+  "author": "https://twitter.com/cyrildiagne",
   "license": "MIT",
+  "eslintConfig": {
+    "extends": [
+      "prettier-standard"
+    ]
+  },
+  "prettier": "prettier-config-standard",
+  "sass": {
+    "includePaths": [
+      "./node_modules"
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "esmodules": false,
+          "targets": {
+            "browsers": [
+              "> 3%"
+            ]
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      [
+        "transform-runtime",
+        {
+          "polyfill": false
+        }
+      ]
+    ]
+  },
   "dependencies": {
     "@material/icon-button": "^6.0.0",
     "@material/slider": "^6.0.0",
@@ -36,6 +70,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^2.2.0",
+    "node-sass-package-importer": "^5.3.2",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-clean-dist": "0.0.6",
     "prettier": "^2.0.5",
