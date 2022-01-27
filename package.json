@@ -49,7 +49,7 @@
     "@tensorflow/tfjs-core": "^1.7.3",
     "a-color-picker": "^1.2.1",
     "simplify-js": "^1.2.4",
-    "three": "^0.115.0"
+    "three": "^0.137.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
